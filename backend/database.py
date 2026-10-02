@@ -268,7 +268,8 @@ def get_answer_key(topic_slug):
 
 if __name__ == "__main__":
     seed_database()
-    print("Quiz database ready.")import json
+    print("Quiz database ready.")
+import json
 import sqlite3
 from contextlib import contextmanager
 from pathlib import Path
