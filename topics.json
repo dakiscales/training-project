@@ -1,0 +1,23 @@
+[
+  {
+    "slug": "space",
+    "name": "Space",
+    "description": "Five questions about our solar system.",
+    "position": 1,
+    "quiz_version": 1
+  },
+  {
+    "slug": "maths",
+    "name": "Everyday Maths",
+    "description": "Arithmetic, percentages, and basic geometry.",
+    "position": 2,
+    "quiz_version": 1
+  },
+  {
+    "slug": "web",
+    "name": "Web Basics",
+    "description": "Browsers, addresses, and web requests.",
+    "position": 3,
+    "quiz_version": 1
+  }
+]
