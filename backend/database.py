@@ -203,7 +203,7 @@ def get_quiz(topic_slug):
         if topic is None:
             return None
 
-        # This query deliberately excludes the answer key and explanations.
+        
         rows = connection.execute("""
             SELECT
                 question_id,
@@ -237,6 +237,33 @@ def get_quiz(topic_slug):
         "quiz_version": topic["quiz_version"],
         "question_count": len(questions),
         "questions": questions,
+    }
+    def get_answer_key(topic_slug):
+    """Read the quiz version and correct answers for backend grading."""
+    with _connection(read_only=True) as connection:
+        # Read the version and questions from the same database snapshot.
+        connection.execute("BEGIN")
+
+        topic = connection.execute("""
+            SELECT slug, quiz_version
+            FROM topics
+            WHERE slug = ?
+        """, (topic_slug,)).fetchone()
+
+        if topic is None:
+            return None
+
+        questions = connection.execute("""
+            SELECT question_id, correct_option, explanation
+            FROM questions
+            WHERE topic_slug = ?
+            ORDER BY position
+        """, (topic_slug,)).fetchall()
+
+    return {
+        "topic_slug": topic["slug"],
+        "quiz_version": topic["quiz_version"],
+        "questions": [dict(question) for question in questions],
     }
 
 
