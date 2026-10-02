@@ -1,13 +1,26 @@
 import logging
+from pathlib import Path
 from sqlite3 import Error as SQLiteError
 from fastapi import FastAPI, HTTPException
+from fastapi.responses import FileResponse
+from fastapi.staticfiles import StaticFiles
 from typing import Literal
 from pydantic import BaseModel, ConfigDict, Field
 import database
 
 
-app = FastAPI(title="Quiz API", version="1.0.0")
+app = FastAPI(title="nejya guessing API", version="1.0.0")
 logger = logging.getLogger(__name__)
+
+# Resolve the website from this file, regardless of the terminal's directory.
+FRONTEND_DIR = Path(__file__).resolve().parent.parent / "frontend"
+app.mount("/static", StaticFiles(directory=FRONTEND_DIR / "static"), name="static")
+
+
+@app.get("/", response_class=FileResponse, include_in_schema=False)
+def homepage():
+    """Serve the quiz website; the API routes below keep doing the scoring."""
+    return FileResponse(FRONTEND_DIR / "index.html")
 
 
 @app.get("/topics")

@@ -216,3 +216,6 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# Generated quiz database; the original questions live in backend/seed_data/.
+/backend/data/

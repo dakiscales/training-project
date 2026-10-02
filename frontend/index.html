@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#141113">
+    <meta name="description" content="A little curiosity. Five questions. Pick a topic and put your knowledge to the test with nejya guessing.">
+    <title>nejya guessing</title>
+    <link rel="icon" href="/static/favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="/static/style.css">
+    <script src="/static/app.js" defer></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <div class="site-shell">
+      <header class="site-header">
+        <a class="brand" href="/" data-home aria-label="nejya guessing home">
+          <span class="brand-mark" aria-hidden="true">n<span>?</span></span>
+          <span>nejya<span class="brand-light"> guessing</span><span class="brand-dot">.</span></span>
+        </a>
+        <span class="header-note"><span class="little-star" aria-hidden="true">✳</span> Stay curious.</span>
+      </header>
+
+      <main id="main" tabindex="-1">
+        <noscript><div class="notice">Turn on JavaScript to load topics, answer questions, and see your score.</div></noscript>
+        <section id="home-view" aria-labelledby="welcome-title">
+          <div class="hero">
+            <div class="hero-copy">
+              <p class="eyebrow"><span class="red-line" aria-hidden="true"></span> Welcome to nejya guessing</p>
+              <h1 id="welcome-title" tabindex="-1">A good guess<br>starts <em>here.</em><span class="hero-asterisk" aria-hidden="true">✳</span></h1>
+              <p class="hero-description">A little knowledge. A little instinct. Pick your topic<br class="desktop-break"> and see what you know, five questions at a time.</p>
+              <a class="button button-primary hero-button" href="#topics">Find your next quiz <span aria-hidden="true">↗</span></a>
+              <p class="hero-footnote">No timer. No pressure. Just you and your curiosity.</p>
+            </div>
+            <div class="hero-art" aria-hidden="true">
+              <div class="orbit orbit-one"></div><div class="orbit orbit-two"></div>
+              <span class="art-spark spark-one">✳</span><span class="art-spark spark-two">+</span>
+              <span class="orbit-dot"></span>
+              <div class="guess-card card-back"><span>A / B / C / D</span></div>
+              <div class="guess-card card-front"><span class="card-mini">TRUST YOUR GUT</span><span class="big-question">?</span><div class="art-card-bottom"><span>MAKE A GUESS.</span><span>↗</span></div></div>
+              <div class="art-sticker"><span>5</span> questions.<br>you've got this.</div>
+            </div>
+          </div>
+
+          <section class="topics-section" id="topics" aria-labelledby="topics-title">
+            <div class="section-heading"><div><p class="eyebrow">YOUR NEXT CHALLENGE</p><h2 id="topics-title" tabindex="-1">Pick your playground.</h2></div><span class="section-note" id="topic-count">Choose a topic to begin</span></div>
+            <div id="topics-notice" class="notice" role="status"><p id="topics-message">Finding your next quiz…</p><button id="retry-topics" class="button button-secondary button-small" type="button" hidden>Try again</button></div>
+            <div class="topic-grid" id="topic-grid" aria-label="Available quiz topics" aria-busy="true"></div>
+          </section>
+          <div class="how-it-works"><p class="eyebrow">SMALL QUIZ. NEW KNOWLEDGE.</p><p><span>01</span> Pick a topic</p><span class="step-arrow" aria-hidden="true">→</span><p><span>02</span> Make your guesses</p><span class="step-arrow" aria-hidden="true">→</span><p><span>03</span> Learn something new</p></div>
+        </section>
+
+        <section id="loading-view" class="center-state" aria-labelledby="loading-title" hidden>
+          <span class="loading-symbol" id="loading-symbol" aria-hidden="true">✳</span><p class="eyebrow">ONE MOMENT</p><h1 id="loading-title" tabindex="-1">Getting your quiz ready.</h1><p id="loading-message" role="status">Loading questions…</p><button class="button button-secondary" id="retry-quiz" type="button" hidden>Try again</button><br><button class="text-button" type="button" data-home>← Back to topics</button>
+        </section>
+
+        <section id="quiz-view" class="quiz-layout" aria-labelledby="question-title" hidden>
+          <div class="quiz-topline"><button class="text-button" type="button" data-home>← All topics</button><span class="quiz-topic" id="quiz-topic"></span></div>
+          <div class="quiz-workspace">
+            <aside class="quiz-sidebar" aria-label="Quiz progress"><p class="eyebrow">A LITTLE CHALLENGE</p><h2>One question.<br>One good guess.</h2><p>Take your time. You can go back and change your answers before you finish.</p><nav class="question-steps" id="question-steps" aria-label="Jump to a question"></nav><p class="answered-count" id="answered-count" role="status"></p><progress id="quiz-progress" value="0" max="5" aria-label="Questions answered"></progress><div class="sidebar-detail"><span aria-hidden="true">✳</span><p>Curiosity looks<br>good on you.</p></div></aside>
+            <div class="question-panel">
+              <form id="quiz-form">
+                <fieldset id="question-fieldset">
+                  <legend><span class="eyebrow" id="question-position"></span><span id="question-title" class="question-title" role="heading" aria-level="1" tabindex="-1"></span></legend>
+                  <p class="question-hint" id="question-hint">Choose one answer.</p>
+                  <div class="options" id="options"></div>
+                </fieldset>
+                <div class="quiz-error notice notice-error" id="quiz-error" role="alert" hidden><p id="quiz-error-message"></p><button class="button button-secondary button-small" type="button" id="reload-quiz" hidden>Reload this quiz</button></div>
+                <div class="question-actions"><button class="button button-secondary" id="previous-question" type="button">← Previous</button><button class="button button-primary" id="next-question" type="submit">Next question <span aria-hidden="true">→</span></button></div>
+                <p class="question-help" id="question-help">Your score appears after all five questions.</p>
+              </form>
+            </div>
+          </div>
+        </section>
+
+        <section id="results-view" class="results-layout" aria-labelledby="results-title" hidden>
+          <div class="quiz-topline"><button class="text-button" type="button" data-home>← All topics</button><span class="quiz-topic" id="results-topic"></span></div>
+          <div class="results-hero"><div><p class="eyebrow">QUIZ COMPLETE</p><h1 id="results-title" tabindex="-1">Look at you go.</h1><p id="results-message" class="results-message"></p><div class="results-actions"><button class="button button-primary" id="play-again" type="button">Try this topic again <span aria-hidden="true">↻</span></button><button class="button button-secondary" type="button" data-home>Explore topics ↗</button></div></div><div class="score-display"><p class="eyebrow">YOUR SCORE</p><p class="score-number"><span id="score-value"></span><span class="score-total" id="score-total"></span></p><p class="score-percentage" id="score-percentage"></p></div></div>
+          <div class="section-heading review-heading"><div><p class="eyebrow">THE GOOD PART</p><h2>Every answer, explained.</h2></div><span class="section-note">A little wiser than before.</span></div>
+          <ol class="review-list" id="review-list"></ol>
+        </section>
+      </main>
+      <footer class="site-footer"><span>nejya guessing<span class="brand-dot">.</span></span><p>Made for curious minds.</p><span class="footer-signoff">Keep guessing <span aria-hidden="true">↗</span></span></footer>
+    </div>
+    <dialog id="leave-dialog" aria-labelledby="leave-title" aria-describedby="leave-description"><form method="dialog"><p class="eyebrow">TAKE A BREATHER?</p><h2 id="leave-title">Leave this quiz?</h2><p id="leave-description">Your answers for this round will be cleared.</p><div class="dialog-actions"><button class="button button-primary" value="stay" autofocus>Keep playing</button><button class="button button-secondary" value="leave">Leave quiz</button></div></form></dialog>
+    <div id="announcement" class="sr-only" role="status" aria-live="polite" aria-atomic="true"></div>
+  </body>
+</html>
