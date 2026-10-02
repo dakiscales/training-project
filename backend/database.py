@@ -238,10 +238,9 @@ def get_quiz(topic_slug):
         "question_count": len(questions),
         "questions": questions,
     }
-    def get_answer_key(topic_slug):
+def get_answer_key(topic_slug):
     """Read the quiz version and correct answers for backend grading."""
     with _connection(read_only=True) as connection:
-        # Read the version and questions from the same database snapshot.
         connection.execute("BEGIN")
 
         topic = connection.execute("""
