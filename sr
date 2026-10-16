@@ -1,11 +1,1 @@
 
-
-# install cloudflared
-sudo apt-get update && sudo apt-get install cloudflared
-
-
-
-cloudflared tunnel run --token eyJhIjoiNGM2ZjZmZTlhYmI4MjQ4NzQxNmI4MGFjY2YzOTA1NTQiLCJ0IjoiNmQ5NGYxYzktYzJjYi00NDk2LTkzZGUtODcyN2FjNDU4OWE5IiwicyI6Ik0yWmpaV1ZtTnprdFlXSTBPQzAwWm1Ka0xXRTVNamd0WVdWaVltWmpPVFprWldFdyJ9
-
-
-sudo cloudflared service install eyJhIjoiNGM2ZjZmZTlhYmI4MjQ4NzQxNmI4MGFjY2YzOTA1NTQiLCJ0IjoiNmQ5NGYxYzktYzJjYi00NDk2LTkzZGUtODcyN2FjNDU4OWE5IiwicyI6Ik0yWmpaV1ZtTnprdFlXSTBPQzAwWm1Ka0xXRTVNamd0WVdWaVltWmpPVFprWldFdyJ9
